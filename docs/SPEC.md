@@ -108,7 +108,7 @@ float32. They hold every intermediate step: `voice_wav`, `voice_logmel`, `voice_
 `decoder_out`, `audio`.
 
 Tolerances for a float32 engine: every building block, fed with the reference inputs, within
-`max|Δ| / max|ref| < 1e-3`; end-to-end audio SNR above 40 dB. Reduced-precision versions (float16, 8-bit, 4-bit)
+`max|Δ| / max|ref| < 1e-3`; end-to-end audio SNR above 40 dB. Reduced-precision versions (float16, 8-bit)
 report the SNR per block and are checked by ear and with a speech recognizer.
 
 Speed is measured the same way in every engine: ten reference sentences, one voice with its cache built beforehand,
