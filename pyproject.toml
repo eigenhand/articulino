@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "articulino"
+version = "1.0.0"
+description = "Small, fast German and English text to speech with zero-shot voice cloning (4-step distilled flow matching)"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [{ name = "eigenhand" }]
+keywords = ["text-to-speech", "tts", "german", "english", "voice-cloning", "flow-matching", "speech-synthesis"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Natural Language :: German",
+    "Natural Language :: English",
+]
+dependencies = [
+    "torch>=2.1",
+    "numpy>=1.24",
+    "soundfile>=0.12",
+    "num2words>=0.5.14,<0.6",
+]
+
+[project.optional-dependencies]
+hub = ["huggingface_hub>=0.20"]
+test = ["pytest>=7", "scipy", "safetensors"]
+
+[project.urls]
+"Model card" = "https://huggingface.co/eigenhand/Articulino-DE-EN-Realtime-Stream-TTS"
+
+[project.scripts]
+articulino = "articulino.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"articulino.frontend" = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: loads the full model or runs whole sentences",
+    "asr: listening check through a local speech recognizer (opt-in: ARTICULINO_ASR_URL)",
+]
